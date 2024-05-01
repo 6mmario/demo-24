@@ -1,0 +1,23 @@
+/* listado-clientes.component.css */
+table {
+    width: 100%;
+    margin-top: 20px;
+  }
+  .container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .logo {
+    max-width: 100px;
+    margin-bottom: 20px;
+  }
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  

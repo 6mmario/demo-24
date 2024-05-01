@@ -1,0 +1,50 @@
+<div class="container">
+    <img src="assets/logo-chn.png" alt="Logo CHN" class="logo">
+    <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput placeholder="Ingresar nombre cliente" formControlName="nombre">
+        <mat-error *ngIf="clienteForm.get('nombre')?.hasError('required')">Nombre es requerido.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Apellido</mat-label>
+        <input matInput placeholder="Ingresar apellido cliente" formControlName="apellido">
+        <mat-error *ngIf="clienteForm.get('apellido')?.hasError('required')">Apellido es requerido.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Número de identificación</mat-label>
+        <input matInput placeholder="Ingresa número de identificación" formControlName="identificacion">
+        <mat-error *ngIf="clienteForm.get('identificacion')?.hasError('required')">Identificación es requerida.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha de nacimiento</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="Selecciona una fecha" formControlName="fechaNacimiento">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Dirección</mat-label>
+        <input matInput placeholder="Ingresar dirección cliente" formControlName="direccion">
+        <mat-error *ngIf="clienteForm.get('direccion')?.hasError('required')">Dirección es requerida.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Correo electrónico</mat-label>
+        <input matInput type="email" placeholder="Ingresa correo electrónico cliente" formControlName="correo">
+        <mat-error *ngIf="clienteForm.get('correo')?.hasError('required')">Correo electrónico es requerido.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Teléfono</mat-label>
+        <input matInput type="tel" placeholder="Ingresa teléfono cliente" formControlName="telefono">
+        <mat-error *ngIf="clienteForm.get('telefono')?.hasError('required')">Teléfono es requerido.</mat-error>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="!clienteForm.valid">Enviar</button>
+      <button *ngIf="submitted" mat-stroked-button color="primary" (click)="nuevoCliente()">Nuevo Cliente</button>
+    </form>
+</div>

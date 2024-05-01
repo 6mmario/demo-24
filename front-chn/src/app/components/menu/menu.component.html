@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-button [matMenuTriggerFor]="menu">Menú</button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="clientesMenu">Clientes</button>
+        <button mat-menu-item [matMenuTriggerFor]="prestamosMenu">Préstamos</button>
+      </mat-menu>
+  
+      <mat-menu #clientesMenu="matMenu">
+        <button mat-menu-item routerLink="/clientes/listar">Listar Clientes</button>
+        <button mat-menu-item routerLink="/clientes/nuevo">Nuevo Cliente</button>
+      </mat-menu>
+  
+      <mat-menu #prestamosMenu="matMenu">
+        <button mat-menu-item routerLink="/prestamos/listar">Listar Préstamo</button>
+        <button mat-menu-item routerLink="/prestamos/solicitar">Solicitar Préstamo</button>
+      </mat-menu>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  

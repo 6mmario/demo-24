@@ -1,0 +1,59 @@
+<!-- listado-clientes.component.html -->
+<div class="container">
+    <img src="assets/logo-chn.png" alt="Logo CHN" class="logo">
+</div>
+<mat-form-field appearance="fill">
+    <mat-label>Buscar cliente</mat-label>
+    <input matInput (keyup)="applyFilter($event)">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Columna de Nombre -->
+    <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+
+    <!-- Columna de Apellido -->
+    <ng-container matColumnDef="apellido">
+        <th mat-header-cell *matHeaderCellDef> Apellido </th>
+        <td mat-cell *matCellDef="let element"> {{element.apellido}} </td>
+    </ng-container>
+
+    <!-- Columna de Teléfono -->
+    <ng-container matColumnDef="telefono">
+        <th mat-header-cell *matHeaderCellDef> Teléfono </th>
+        <td mat-cell *matCellDef="let element"> {{element.telefono}} </td>
+    </ng-container>
+
+    <!-- Columna de Acciones -->
+    <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-button (click)="openDialog(element)">Mostrar más</button>
+            <button mat-button color="warn" (click)="deleteCliente(element.clienteID)">Eliminar</button>
+            <button mat-button color="primary" (click)="editCliente(element.clienteID)">Editar</button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<!-- Modal para mostrar más información -->
+<ng-template #dialogRef let-data>
+    <h1 mat-dialog-title>Detalles del Cliente</h1>
+    <div mat-dialog-content>
+        <p><strong>Nombre:</strong> {{data.nombre}}</p>
+        <p><strong>Apellido:</strong> {{data.apellido}}</p>
+        <p><strong>Número de Identificación:</strong> {{data.numeroIdentificacion}}</p>
+        <p><strong>Dirección:</strong> {{data.direccion}}</p>
+        <p><strong>Correo Electrónico:</strong> {{data.correoElectronico}}</p>
+        <p><strong>Teléfono:</strong> {{data.telefono}}</p>
+        <p><strong>Fecha de Nacimiento:</strong> {{data.fechaNacimiento | date:'mediumDate'}}</p>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button (click)="closeDialog()">Cerrar</button>
+    </div>
+</ng-template>
