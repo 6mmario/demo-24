@@ -27,6 +27,7 @@ import { DialogsComponent } from './components/dialogs/dialogs.component';
 import { ApprovalDialogComponent } from './components/approval-dialog/approval-dialog.component';
 import { PagosModalComponent } from './components/pagos-modal/pagos-modal.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     SolicitarPrestamoComponent,
     DialogsComponent,
     ApprovalDialogComponent,
-    PagosModalComponent
+    PagosModalComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,

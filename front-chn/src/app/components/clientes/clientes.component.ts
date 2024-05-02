@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Cliente } from 'src/app/Models/cliente';
 import { ClienteService } from 'src/app/services/clientes/cliente.service';
 import { Router } from '@angular/router'; // Importa Router
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-clientes',
@@ -52,12 +53,30 @@ export class ClientesComponent implements OnInit {
     this.dialog.closeAll();
   }
 
+  openConfirmDialog(clienteId: number): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px',
+      data: '¿Está seguro que quiere eliminar este registro?'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteCliente(clienteId);
+      }
+    });
+  }
+
   deleteCliente(clienteId: number) {
-    // Implementar eliminación aquí
+    this.clienteService.deleteCliente(clienteId).subscribe({
+      next: (res) => {
+        console.log('Cliente eliminado con éxito', res);
+        this.cargarClientes(); // Recargar la lista de clientes
+      },
+      error: (err) => console.error('Error al eliminar cliente', err)
+    });
   }
 
   editCliente(clienteId: number) {
-    // Navega al componente de registro de cliente con el ID del cliente como parámetro
     console.log(['/clientes/nuevo', { id: clienteId }])
     this.router.navigate(['/clientes/nuevo', { id: clienteId }]);
   }

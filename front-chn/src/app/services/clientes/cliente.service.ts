@@ -43,4 +43,8 @@ export class ClienteService {
     const url = `${this.apiUrl}/buscar?numeroIdentificacion=${numeroIdentificacion}`;
     return this.http.get<any>(url);
   }
+
+  deleteCliente(clienteId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${clienteId}`);
+  }
 }
