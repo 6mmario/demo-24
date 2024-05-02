@@ -61,4 +61,9 @@ export class ClientesComponent implements OnInit {
     console.log(['/clientes/nuevo', { id: clienteId }])
     this.router.navigate(['/clientes/nuevo', { id: clienteId }]);
   }
+
+  solicitarCredito(clienteId: number) {
+    // Asumiendo que tienes una ruta configurada para solicitar crédito
+    this.router.navigate(['/solicitar-credito', { id: clienteId }]);
+}
 }

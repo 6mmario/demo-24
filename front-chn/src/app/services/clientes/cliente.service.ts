@@ -38,4 +38,9 @@ export class ClienteService {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     });
   }
+
+  buscarClientePorIdentificacion(numeroIdentificacion: string): Observable<any> {
+    const url = `${this.apiUrl}/buscar?numeroIdentificacion=${numeroIdentificacion}`;
+    return this.http.get<any>(url);
+  }
 }

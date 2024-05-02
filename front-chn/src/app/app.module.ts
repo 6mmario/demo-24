@@ -21,14 +21,18 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MenuComponent } from './components/menu/menu.component';
 import { MatTableModule } from '@angular/material/table';  // Importa MatTableModule
 import { MatDialogModule } from '@angular/material/dialog';
-
+import { MatIconModule } from '@angular/material/icon';
+import { SolicitarPrestamoComponent } from './components/solicitar-prestamo/solicitar-prestamo.component';
+import { DialogsComponent } from './components/dialogs/dialogs.component';
 @NgModule({
   declarations: [
     AppComponent,
     ClientesComponent,
     RegistrarClientesComponent,
     PrestamosComponent,
-    MenuComponent
+    MenuComponent,
+    SolicitarPrestamoComponent,
+    DialogsComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,8 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatToolbarModule,
     MatMenuModule,
     MatTableModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

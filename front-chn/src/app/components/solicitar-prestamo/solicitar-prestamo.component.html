@@ -1,0 +1,48 @@
+<!-- listado-clientes.component.html -->
+<div class="container2">
+    <img src="assets/logo-chn.png" alt="Logo CHN" class="logo">
+</div>
+<div class="container">
+    <mat-form-field appearance="fill">
+      <mat-label>Número de Identificación</mat-label>
+      <input matInput [(ngModel)]="numeroIdentificacion">
+      <button mat-icon-button matSuffix (click)="buscarCliente()">
+        <mat-icon>search</mat-icon>
+      </button>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre</mat-label>
+      <input matInput [(ngModel)]="cliente.nombre" disabled>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Apellido</mat-label>
+      <input matInput [(ngModel)]="cliente.apellido" disabled>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Fecha de Nacimiento</mat-label>
+      <input matInput [(ngModel)]="cliente.fechaNacimiento" disabled>
+    </mat-form-field>
+  
+    <!-- Campos para detalles del crédito -->
+    <mat-form-field appearance="fill">
+      <mat-label>Monto Solicitado</mat-label>
+      <input matInput [(ngModel)]="solicitud.montoSolicitado">
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Plazo Deseado (meses)</mat-label>
+      <input matInput [(ngModel)]="solicitud.plazoDeseado">
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Detalles</mat-label>
+      <textarea matInput [(ngModel)]="solicitud.detalles"></textarea>
+    </mat-form-field>
+  
+    <button mat-raised-button color="primary" (click)="registrarSolicitud()">Registrar</button>
+  </div>
+
+  
