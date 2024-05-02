@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  backend:
+    build: ./demo
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - mynet
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "miContrasena123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - ./db.ddl:/sql/db.ddl
+      - ./entrypoint.sh:/usr/src/app/entrypoint.sh
+    command: "/bin/bash /usr/src/app/entrypoint.sh"
+    networks:
+      - mynet
+
+  frontend:
+    build: ./front-chn
+    ports:
+      - "4200:4200"
+    networks:
+      - mynet
+
+networks:
+  mynet:
