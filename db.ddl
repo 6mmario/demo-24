@@ -1,4 +1,5 @@
 CREATE DATABASE GestionBancaria;
+
 USE GestionBancaria;
 
 -- Creación de la tabla Clientes
