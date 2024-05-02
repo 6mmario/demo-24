@@ -24,6 +24,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { SolicitarPrestamoComponent } from './components/solicitar-prestamo/solicitar-prestamo.component';
 import { DialogsComponent } from './components/dialogs/dialogs.component';
+import { ApprovalDialogComponent } from './components/approval-dialog/approval-dialog.component';
+import { PagosModalComponent } from './components/pagos-modal/pagos-modal.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +36,9 @@ import { DialogsComponent } from './components/dialogs/dialogs.component';
     PrestamosComponent,
     MenuComponent,
     SolicitarPrestamoComponent,
-    DialogsComponent
+    DialogsComponent,
+    ApprovalDialogComponent,
+    PagosModalComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +56,8 @@ import { DialogsComponent } from './components/dialogs/dialogs.component';
     MatMenuModule,
     MatTableModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

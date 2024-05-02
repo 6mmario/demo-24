@@ -1,1 +1,118 @@
-<p>prestamos works!</p>
+<!-- listado-clientes.component.html -->
+<div class="container2">
+    <img src="assets/logo-chn.png" alt="Logo CHN" class="logo">
+</div>
+<div class="container">
+    <!-- Input para buscar cliente por número de identificación -->
+    <mat-form-field appearance="fill">
+        <mat-label>Número de Identificación</mat-label>
+        <input matInput [(ngModel)]="numeroIdentificacion">
+        <button mat-icon-button matSuffix (click)="buscarSolicitudesPendientes()">
+            <mat-icon>search</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <!-- Sección para mostrar información del cliente -->
+    <!-- Sección para mostrar información del cliente -->
+    <div *ngIf="cliente" class="cliente-info">
+        <h3>Información del Cliente</h3>
+        <div class="column">
+            <p><strong>Nombre:</strong> {{cliente.nombre}}</p>
+            <p><strong>Apellido:</strong> {{cliente.apellido}}</p>
+            <p><strong>Número de Identificación:</strong> {{cliente.numeroIdentificacion}}</p>
+        </div>
+    </div>
+
+
+    <!-- Tabla para mostrar las solicitudes pendientes -->
+    <table mat-table [dataSource]="solicitudesPendientes" class="mat-elevation-z8" *ngIf="solicitudesPendientes.length">
+        <!-- Columnas de la tabla para detalles de las solicitudes -->
+        <ng-container matColumnDef="montoSolicitado">
+            <th mat-header-cell *matHeaderCellDef> Monto Solicitado </th>
+            <td mat-cell *matCellDef="let solicitud"> {{solicitud.montoSolicitado | currency}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="plazoDeseado">
+            <th mat-header-cell *matHeaderCellDef> Plazo Deseado </th>
+            <td mat-cell *matCellDef="let solicitud"> {{solicitud.plazoDeseado}} meses </td>
+        </ng-container>
+
+        <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef> Estado </th>
+            <td mat-cell *matCellDef="let solicitud"> {{solicitud.estado}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="detalles">
+            <th mat-header-cell *matHeaderCellDef> Detalles </th>
+            <td mat-cell *matCellDef="let solicitud"> {{solicitud.detalles}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let solicitud"> {{solicitud.descripcion}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef> Acciones </th>
+            <td mat-cell *matCellDef="let solicitud">
+                <!-- El botón de acciones solo aparece si la solicitud no está ni aprobada ni rechazada -->
+                <button mat-icon-button [matMenuTriggerFor]="menu"
+                    *ngIf="solicitud.estado !== 'Aprobado' && solicitud.estado !== 'Rechazado'">
+                    <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="openDialog('aprobar', solicitud)">
+                        Aprobar
+                    </button>
+                    <button mat-menu-item (click)="openDialog('rechazar', solicitud)">
+                        Rechazar
+                    </button>
+                </mat-menu>
+            </td>
+        </ng-container>
+
+        <!-- Fila de encabezado y fila de datos -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+
+<div class="container">
+    <!-- Tabla de Préstamos Aprobados -->
+<div *ngIf="dataSourceAprobados.length > 0">
+    <h3>Préstamos Aprobados</h3>
+    <table mat-table [dataSource]="dataSourceAprobados" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="fechaAprobacion">
+        <th mat-header-cell *matHeaderCellDef> Fecha de Aprobación </th>
+        <td mat-cell *matCellDef="let element"> {{element.fechaAprobacion}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="montoAprobado">
+        <th mat-header-cell *matHeaderCellDef> Monto Aprobado </th>
+        <td mat-cell *matCellDef="let element"> {{element.montoAprobado | currency}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="plazoMeses">
+        <th mat-header-cell *matHeaderCellDef> Plazo (Meses) </th>
+        <td mat-cell *matCellDef="let element"> {{element.plazoMeses}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="plazoEstado">
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let element"> {{element.estadoPago}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button (click)="verDetallesPago(element)">Pagos</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsAprobados"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsAprobados;"></tr>
+    </table>
+</div>
+
+</div>

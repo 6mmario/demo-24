@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>{{ data.type === 'aprobar' ? 'Aprobar' : 'Rechazar' }} Solicitud</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Descripción</mat-label>
+    <input matInput [(ngModel)]="descripcion">
+  </mat-form-field>
+
+  <!-- Campos adicionales para cuando se aprueba la solicitud -->
+  <div *ngIf="data.type === 'aprobar'">
+    <mat-form-field>
+      <mat-label>Monto Aprobado</mat-label>
+      <input matInput [(ngModel)]="montoAprobado" type="number">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Plazo en Meses</mat-label>
+      <input matInput [(ngModel)]="plazoMeses" type="number">
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="enviarDecision()">Enviar</button>
+  <button mat-button (click)="dialogRef.close()">Cancelar</button>
+</div>
